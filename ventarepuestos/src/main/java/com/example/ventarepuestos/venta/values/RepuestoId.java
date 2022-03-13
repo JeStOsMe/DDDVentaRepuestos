@@ -1,5 +1,7 @@
 package com.example.ventarepuestos.venta.values;
 
-public class RepuestoId {
+import co.com.sofka.domain.generic.Identity;
+
+public class RepuestoId extends Identity{
     
 }
