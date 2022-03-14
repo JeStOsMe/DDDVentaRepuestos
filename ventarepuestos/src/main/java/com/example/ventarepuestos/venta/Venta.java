@@ -4,9 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import com.example.ventarepuestos.cliente.Cliente;
 import com.example.ventarepuestos.cliente.values.ClienteId;
-import com.example.ventarepuestos.vendedor.Vendedor;
 import com.example.ventarepuestos.vendedor.values.VendedorId;
 import com.example.ventarepuestos.venta.events.CajeroAsociado;
 import com.example.ventarepuestos.venta.events.CategoriaDeRepuestoActualizada;
@@ -40,9 +38,9 @@ public class Venta extends AggregateEvent<VentaId>{
     protected Fecha fecha;
     protected Dinero dinero;
     protected Set<Repuesto> repuestos;
-    protected Cliente clienteId;
-    protected Vendedor vendedorId;
-    protected Cajero cajeroId;
+    protected ClienteId clienteId;
+    protected VendedorId vendedorId;
+    protected CajeroId cajeroId;
 
     public Venta(VentaId entityId, Fecha fecha){
         super(entityId);
@@ -108,7 +106,7 @@ public class Venta extends AggregateEvent<VentaId>{
         appendChange(new NombreDeCajeroActualizado(cajeroId, nombreCajero)).apply();
     }
 
-    public void actualizarCelularDeCajero(CajeroId cajeroId, CelularCajero celularCajero){
+    public void ActualizarCelularDeCajero(CajeroId cajeroId, CelularCajero celularCajero){
         appendChange(new CelularDeCajeroActualizado(cajeroId, celularCajero)).apply();
     }
 
@@ -132,15 +130,15 @@ public class Venta extends AggregateEvent<VentaId>{
         return repuestos;
     }
 
-    public Cliente clienteId() {
+    public ClienteId clienteId() {
         return clienteId;
     }
 
-    public Vendedor vendedorId() {
+    public VendedorId vendedorId() {
         return vendedorId;
     }
 
-    public Cajero cajeroId() {
+    public CajeroId cajeroId() {
         return cajeroId;
     }
 
