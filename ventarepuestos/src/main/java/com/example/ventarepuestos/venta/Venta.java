@@ -20,6 +20,7 @@ import com.example.ventarepuestos.venta.events.NombreDeRepuestoActualizado;
 import com.example.ventarepuestos.venta.events.RepuestoAgregado;
 import com.example.ventarepuestos.venta.events.ValorDeVentaCambiado;
 import com.example.ventarepuestos.venta.events.VendedorAsociado;
+import com.example.ventarepuestos.venta.events.VentaCreada;
 import com.example.ventarepuestos.venta.values.CajeroId;
 import com.example.ventarepuestos.venta.values.CategoriaRepuesto;
 import com.example.ventarepuestos.venta.values.CelularCajero;
