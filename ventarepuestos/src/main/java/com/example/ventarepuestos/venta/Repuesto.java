@@ -1,5 +1,7 @@
 package com.example.ventarepuestos.venta;
 
+import java.util.Objects;
+
 import com.example.ventarepuestos.venta.values.CategoriaRepuesto;
 import com.example.ventarepuestos.venta.values.LineaRepuesto;
 import com.example.ventarepuestos.venta.values.MarcaRepuesto;
@@ -10,11 +12,11 @@ import co.com.sofka.domain.generic.Entity;
 
 public class Repuesto extends Entity<RepuestoId>{
 
-    private final RepuestoId repuestoId;
-    private final NombreRepuesto nombre;
-    private final CategoriaRepuesto categoria;
-    private final MarcaRepuesto marca;
-    private final LineaRepuesto linea;
+    private RepuestoId repuestoId;
+    private NombreRepuesto nombre;
+    private CategoriaRepuesto categoria;
+    private MarcaRepuesto marca;
+    private LineaRepuesto linea;
 
     public Repuesto(RepuestoId entityId, 
                     NombreRepuesto nombre, 
@@ -29,6 +31,23 @@ public class Repuesto extends Entity<RepuestoId>{
         this.marca = marca;
         this.linea = linea;
     }
+
+    public void ActualizarNombreRepuesto(NombreRepuesto nombre){
+        this.nombre = Objects.requireNonNull(nombre);
+    }
+
+    public void ActualizarCategoria(CategoriaRepuesto categoria){
+        this.categoria = Objects.requireNonNull(categoria);
+    }
+
+    public void ActualizarMarca(MarcaRepuesto marca){
+        this.marca = Objects.requireNonNull(marca);
+    }
+
+    public void ActualizarLinea(LineaRepuesto linea){
+        this.linea = Objects.requireNonNull(linea);
+    }
+
 
     public RepuestoId repuestoId(){
         return repuestoId;
