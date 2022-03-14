@@ -1,5 +1,6 @@
 package com.example.ventarepuestos.venta;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -32,6 +33,7 @@ import com.example.ventarepuestos.venta.values.RepuestoId;
 import com.example.ventarepuestos.venta.values.VentaId;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
 public class Venta extends AggregateEvent<VentaId>{
 
@@ -65,6 +67,12 @@ public class Venta extends AggregateEvent<VentaId>{
     private Venta(VentaId entityId){
         super(entityId);
         subscribe(new VentaChange(this));
+    }
+
+    public static Venta from(VentaId ventaId, List<DomainEvent> events){
+        var venta = new Venta(ventaId);
+        events.forEach(venta::applyEvent);
+        return venta;
     }
 
     public void asociarCliente(ClienteId clienteId){

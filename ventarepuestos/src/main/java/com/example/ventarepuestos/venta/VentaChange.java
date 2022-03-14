@@ -1,7 +1,6 @@
 package com.example.ventarepuestos.venta;
 
 import java.util.HashSet;
-import java.util.Objects;
 
 import com.example.ventarepuestos.venta.events.CajeroAsociado;
 import com.example.ventarepuestos.venta.events.CategoriaDeRepuestoActualizada;
@@ -70,7 +69,7 @@ public class VentaChange extends EventChange{
         });
 
         apply((RepuestoAgregado event) -> {
-            
+
             venta.repuestos.add(new Repuesto(
                 event.repuestoId(),
                 event.nombre(),
