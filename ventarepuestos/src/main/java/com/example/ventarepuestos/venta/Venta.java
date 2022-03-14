@@ -8,6 +8,18 @@ import com.example.ventarepuestos.cliente.Cliente;
 import com.example.ventarepuestos.cliente.values.ClienteId;
 import com.example.ventarepuestos.vendedor.Vendedor;
 import com.example.ventarepuestos.vendedor.values.VendedorId;
+import com.example.ventarepuestos.venta.events.CajeroAsociado;
+import com.example.ventarepuestos.venta.events.CategoriaDeRepuestoActualizada;
+import com.example.ventarepuestos.venta.events.CelularDeCajeroActualizado;
+import com.example.ventarepuestos.venta.events.ClienteAsociado;
+import com.example.ventarepuestos.venta.events.FechaDeVentaCambiada;
+import com.example.ventarepuestos.venta.events.LineaDeRepuestoActualizada;
+import com.example.ventarepuestos.venta.events.MarcaDeRepuestoActualizada;
+import com.example.ventarepuestos.venta.events.NombreDeCajeroActualizado;
+import com.example.ventarepuestos.venta.events.NombreDeRepuestoActualizado;
+import com.example.ventarepuestos.venta.events.RepuestoAgregado;
+import com.example.ventarepuestos.venta.events.ValorDeVentaCambiado;
+import com.example.ventarepuestos.venta.events.VendedorAsociado;
 import com.example.ventarepuestos.venta.values.CajeroId;
 import com.example.ventarepuestos.venta.values.CategoriaRepuesto;
 import com.example.ventarepuestos.venta.values.CelularCajero;
@@ -51,6 +63,11 @@ public class Venta extends AggregateEvent<VentaId>{
         appendChange(new RepuestoAgregado(entityId, nombre, categoria, marca, linea)).apply();
     }
 
+    private Venta(VentaId entityId){
+        super(entityId);
+        subscribe(new VentaChange(this));
+    }
+
     public void asociarCliente(ClienteId clienteId){
         appendChange(new ClienteAsociado(clienteId)).apply();
     }
@@ -92,6 +109,14 @@ public class Venta extends AggregateEvent<VentaId>{
 
     public void actualizarCelularDeCajero(CajeroId cajeroId, CelularCajero celularCajero){
         appendChange(new CelularDeCajeroActualizado(cajeroId, celularCajero)).apply();
+    }
+
+    public void cambiarValorDeVenta(Dinero dinero){
+        appendChange(new ValorDeVentaCambiado(dinero)).apply();
+    }
+
+    public void cambiarFechaDeVenta(Fecha fecha){
+        appendChange(new FechaDeVentaCambiada(fecha)).apply();
     }
 
     public Fecha fecha() {
